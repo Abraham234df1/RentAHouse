@@ -121,6 +121,118 @@ namespace RentaDepartamentosWeb.Repositories
         }
 
         /// <inheritdoc />
+        public IEnumerable<Departamento> Buscar(string terminoBusqueda)
+        {
+            return BuscarPorCiudadOColonia(terminoBusqueda);
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorCiudad(string ciudad)
+        {
+            var lista = new List<Departamento>();
+            const string consulta = @"
+                SELECT Id, Direccion, Colonia, Ciudad, Habitaciones, Banios, PrecioRenta, Estado, Arrendatario, FechaInicioRenta
+                FROM Departamentos
+                WHERE Ciudad LIKE @Ciudad;";
+
+            using (var conexion = _conexionBD.ObtenerConexion())
+            using (var comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@Ciudad", SqlDbType.NVarChar, 100).Value = $"%{ciudad}%";
+
+                conexion.Open();
+                using (var lector = comando.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        lista.Add(MapearRenglon(lector));
+                    }
+                }
+            }
+            return lista;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorColonia(string colonia)
+        {
+            var lista = new List<Departamento>();
+            const string consulta = @"
+                SELECT Id, Direccion, Colonia, Ciudad, Habitaciones, Banios, PrecioRenta, Estado, Arrendatario, FechaInicioRenta
+                FROM Departamentos
+                WHERE Colonia LIKE @Colonia;";
+
+            using (var conexion = _conexionBD.ObtenerConexion())
+            using (var comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@Colonia", SqlDbType.NVarChar, 100).Value = $"%{colonia}%";
+
+                conexion.Open();
+                using (var lector = comando.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        lista.Add(MapearRenglon(lector));
+                    }
+                }
+            }
+            return lista;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorEstado(string estado)
+        {
+            var lista = new List<Departamento>();
+            const string consulta = @"
+                SELECT Id, Direccion, Colonia, Ciudad, Habitaciones, Banios, PrecioRenta, Estado, Arrendatario, FechaInicioRenta
+                FROM Departamentos
+                WHERE Estado = @Estado;";
+
+            using (var conexion = _conexionBD.ObtenerConexion())
+            using (var comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@Estado", SqlDbType.NVarChar, 50).Value = estado;
+
+                conexion.Open();
+                using (var lector = comando.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        lista.Add(MapearRenglon(lector));
+                    }
+                }
+            }
+            return lista;
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorPrecio(decimal? precioMin, decimal? precioMax)
+        {
+            var lista = new List<Departamento>();
+            const string consulta = @"
+                SELECT Id, Direccion, Colonia, Ciudad, Habitaciones, Banios, PrecioRenta, Estado, Arrendatario, FechaInicioRenta
+                FROM Departamentos
+                WHERE (@PrecioMin IS NULL OR PrecioRenta >= @PrecioMin)
+                  AND (@PrecioMax IS NULL OR PrecioRenta <= @PrecioMax);";
+
+            using (var conexion = _conexionBD.ObtenerConexion())
+            using (var comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@PrecioMin", SqlDbType.Decimal).Value = (object?)precioMin ?? DBNull.Value;
+                comando.Parameters.Add("@PrecioMax", SqlDbType.Decimal).Value = (object?)precioMax ?? DBNull.Value;
+
+                conexion.Open();
+                using (var lector = comando.ExecuteReader())
+                {
+                    while (lector.Read())
+                    {
+                        lista.Add(MapearRenglon(lector));
+                    }
+                }
+            }
+            return lista;
+        }
+
+        /// <inheritdoc />
         public void ActualizarDepartamento(Departamento departamento)
         {
             if (departamento == null) throw new ArgumentNullException(nameof(departamento));

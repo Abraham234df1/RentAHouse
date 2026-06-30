@@ -43,6 +43,61 @@ namespace RentaDepartamentosWeb.Services
         }
 
         /// <inheritdoc />
+        public IEnumerable<Departamento> Buscar(string terminoBusqueda)
+        {
+            if (string.IsNullOrWhiteSpace(terminoBusqueda))
+            {
+                throw new ArgumentException("El término de búsqueda no puede estar vacío.", nameof(terminoBusqueda));
+            }
+
+            return _repositorio.Buscar(terminoBusqueda);
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorCiudad(string ciudad)
+        {
+            if (string.IsNullOrWhiteSpace(ciudad))
+            {
+                throw new ArgumentException("La ciudad no puede estar vacía.", nameof(ciudad));
+            }
+
+            return _repositorio.BuscarPorCiudad(ciudad);
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorColonia(string colonia)
+        {
+            if (string.IsNullOrWhiteSpace(colonia))
+            {
+                throw new ArgumentException("La colonia no puede estar vacía.", nameof(colonia));
+            }
+
+            return _repositorio.BuscarPorColonia(colonia);
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorEstado(string estado)
+        {
+            if (string.IsNullOrWhiteSpace(estado))
+            {
+                throw new ArgumentException("El estado no puede estar vacío.", nameof(estado));
+            }
+
+            return _repositorio.BuscarPorEstado(estado);
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarPorPrecio(decimal? precioMin, decimal? precioMax)
+        {
+            if (precioMin.HasValue && precioMax.HasValue && precioMin > precioMax)
+            {
+                throw new ArgumentException("El precio mínimo no puede ser mayor que el precio máximo.");
+            }
+
+            return _repositorio.BuscarPorPrecio(precioMin, precioMax);
+        }
+
+        /// <inheritdoc />
         public IEnumerable<Departamento> BuscarPorCiudadOColonia(string terminoBusqueda)
         {
             return _repositorio.BuscarPorCiudadOColonia(terminoBusqueda);
@@ -51,15 +106,11 @@ namespace RentaDepartamentosWeb.Services
         /// <inheritdoc />
         public IEnumerable<Departamento> BuscarDepartamentos(string? termino, string? ciudad, string? colonia, decimal? precioMin, decimal? precioMax, string? estado)
         {
-            IEnumerable<Departamento> resultados;
+            IEnumerable<Departamento> resultados = _repositorio.ObtenerDepartamentos();
 
             if (!string.IsNullOrWhiteSpace(termino))
             {
-                resultados = _repositorio.BuscarPorCiudadOColonia(termino);
-            }
-            else
-            {
-                resultados = _repositorio.ObtenerDepartamentos();
+                resultados = _repositorio.Buscar(termino);
             }
 
             if (!string.IsNullOrWhiteSpace(ciudad))
@@ -155,14 +206,29 @@ namespace RentaDepartamentosWeb.Services
                 throw new ArgumentException("La dirección no puede estar vacía.", nameof(departamento.Direccion));
             }
 
-            if (departamento.PrecioRenta <= 0)
+            if (string.IsNullOrWhiteSpace(departamento.Colonia))
             {
-                throw new ArgumentException("El precio de renta debe ser mayor a cero.", nameof(departamento.PrecioRenta));
+                throw new ArgumentException("La colonia no puede estar vacía.", nameof(departamento.Colonia));
+            }
+
+            if (string.IsNullOrWhiteSpace(departamento.Ciudad))
+            {
+                throw new ArgumentException("La ciudad no puede estar vacía.", nameof(departamento.Ciudad));
             }
 
             if (departamento.Habitaciones <= 0)
             {
                 throw new ArgumentException("El número de habitaciones debe ser mayor a cero.", nameof(departamento.Habitaciones));
+            }
+
+            if (departamento.Banios <= 0)
+            {
+                throw new ArgumentException("El número de baños debe ser mayor a cero.", nameof(departamento.Banios));
+            }
+
+            if (departamento.PrecioRenta <= 0)
+            {
+                throw new ArgumentException("El precio de renta debe ser mayor a cero.", nameof(departamento.PrecioRenta));
             }
 
             string estado = departamento.Estado?.Trim() ?? string.Empty;
@@ -171,9 +237,17 @@ namespace RentaDepartamentosWeb.Services
                 throw new ArgumentException("El estado debe ser Disponible, Rentado o Mantenimiento.", nameof(departamento.Estado));
             }
 
-            if (estado == "Rentado" && string.IsNullOrWhiteSpace(departamento.Arrendatario))
+            if (estado == "Rentado")
             {
-                throw new ArgumentException("Si el estado es Rentado debe existir un Arrendatario.", nameof(departamento.Arrendatario));
+                if (string.IsNullOrWhiteSpace(departamento.Arrendatario))
+                {
+                    throw new ArgumentException("Si el estado es Rentado debe existir un Arrendatario.", nameof(departamento.Arrendatario));
+                }
+
+                if (!departamento.FechaInicioRenta.HasValue)
+                {
+                    throw new ArgumentException("Si el estado es Rentado debe establecerse la fecha de inicio de renta.", nameof(departamento.FechaInicioRenta));
+                }
             }
         }
     }

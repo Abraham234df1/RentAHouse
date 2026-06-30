@@ -29,6 +29,42 @@ namespace RentaDepartamentosWeb.Repositories
         Departamento? ObtenerPorId(int id);
 
         /// <summary>
+        /// Busca departamentos por coincidencia en varios campos.
+        /// </summary>
+        /// <param name="terminoBusqueda">El término de búsqueda.</param>
+        /// <returns>Colección de departamentos que coinciden con el término.</returns>
+        IEnumerable<Departamento> Buscar(string terminoBusqueda);
+
+        /// <summary>
+        /// Busca departamentos por ciudad.
+        /// </summary>
+        /// <param name="ciudad">La ciudad a buscar.</param>
+        /// <returns>Colección de departamentos en la ciudad indicada.</returns>
+        IEnumerable<Departamento> BuscarPorCiudad(string ciudad);
+
+        /// <summary>
+        /// Busca departamentos por colonia.
+        /// </summary>
+        /// <param name="colonia">La colonia a buscar.</param>
+        /// <returns>Colección de departamentos en la colonia indicada.</returns>
+        IEnumerable<Departamento> BuscarPorColonia(string colonia);
+
+        /// <summary>
+        /// Busca departamentos por estado.
+        /// </summary>
+        /// <param name="estado">El estado a buscar.</param>
+        /// <returns>Colección de departamentos con el estado indicado.</returns>
+        IEnumerable<Departamento> BuscarPorEstado(string estado);
+
+        /// <summary>
+        /// Busca departamentos por rango de precio.
+        /// </summary>
+        /// <param name="precioMin">Precio mínimo opcional.</param>
+        /// <param name="precioMax">Precio máximo opcional.</param>
+        /// <returns>Colección de departamentos que cumplen el rango de precio.</returns>
+        IEnumerable<Departamento> BuscarPorPrecio(decimal? precioMin, decimal? precioMax);
+
+        /// <summary>
         /// Busca departamentos por coincidencia en la ciudad o colonia.
         /// </summary>
         /// <param name="terminoBusqueda">El término de búsqueda (ciudad o colonia).</param>

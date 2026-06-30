@@ -31,7 +31,7 @@ namespace RentaDepartamentosWeb.Controllers
         public IActionResult Index()
         {
             var departamentos = _servicio.ObtenerDepartamentos();
-            return View(departamentos);
+            return View("~/Views/Departamentos/Index.cshtml", departamentos);
         }
 
         // GET: Departamento/Details/5
@@ -46,7 +46,7 @@ namespace RentaDepartamentosWeb.Controllers
             {
                 return NotFound();
             }
-            return View(departamento);
+            return View("~/Views/Departamentos/Details.cshtml", departamento);
         }
 
         // GET: Departamento/Create
@@ -55,7 +55,7 @@ namespace RentaDepartamentosWeb.Controllers
         /// </summary>
         public IActionResult Create()
         {
-            return View();
+            return View("~/Views/Departamentos/Create.cshtml");
         }
 
         // POST: Departamento/Create
@@ -75,7 +75,7 @@ namespace RentaDepartamentosWeb.Controllers
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(departamento);
+            return View("~/Views/Departamentos/Create.cshtml", departamento);
         }
 
         // GET: Departamento/Edit/5
@@ -90,7 +90,7 @@ namespace RentaDepartamentosWeb.Controllers
             {
                 return NotFound();
             }
-            return View(departamento);
+            return View("~/Views/Departamentos/Edit.cshtml", departamento);
         }
 
         // POST: Departamento/Edit/5
@@ -115,7 +115,7 @@ namespace RentaDepartamentosWeb.Controllers
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(departamento);
+            return View("~/Views/Departamentos/Edit.cshtml", departamento);
         }
 
         // GET: Departamento/Delete/5
@@ -130,7 +130,7 @@ namespace RentaDepartamentosWeb.Controllers
             {
                 return NotFound();
             }
-            return View(departamento);
+            return View("~/Views/Departamentos/Delete.cshtml", departamento);
         }
 
         // POST: Departamento/Delete/5
@@ -150,7 +150,7 @@ namespace RentaDepartamentosWeb.Controllers
             {
                 ModelState.AddModelError(string.Empty, $"Error al eliminar: {ex.Message}");
                 var departamento = _servicio.ObtenerPorId(id);
-                return View(departamento);
+                return View("~/Views/Departamentos/Delete.cshtml", departamento);
             }
         }
 
@@ -161,7 +161,7 @@ namespace RentaDepartamentosWeb.Controllers
         public IActionResult Disponibles()
         {
             var disponibles = _servicio.ObtenerDisponibles();
-            return View(disponibles);
+            return View("~/Views/Departamentos/Disponibles.cshtml", disponibles);
         }
 
         // GET: Departamento/Buscar
@@ -186,7 +186,7 @@ namespace RentaDepartamentosWeb.Controllers
             ViewBag.PrecioMax = precioMax;
             ViewBag.Estado = estado;
 
-            return View(resultados);
+            return View("~/Views/Departamentos/Buscar.cshtml", resultados);
         }
     }
 }
