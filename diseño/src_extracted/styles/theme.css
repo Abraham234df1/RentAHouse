@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-xl: var(--radius);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 6px);
+  
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@layer base {
+  :root {
+    --background: #f8fafc; /* Fondo claro general - gris muy suave */
+    --foreground: #0f172a; /* Texto principal oscuro - slate-900 */
+    --card: #ffffff; /* Superficies blancas */
+    --card-foreground: #1e293b; /* Texto en tarjetas - slate-800 */
+    --primary: #1e3a8a; /* Azul oscuro corporativo - blue-900 */
+    --primary-foreground: #ffffff; /* Texto sobre primario */
+    --secondary: #e2e8f0; /* Gris suave para botones secundarios - slate-200 */
+    --secondary-foreground: #334155; /* Texto sobre secundario - slate-700 */
+    --muted: #f1f5f9; /* Fondos tenues - slate-100 */
+    --muted-foreground: #64748b; /* Texto secundario - slate-500 */
+    --accent: #16a34a; /* Verde profesional para estados - green-600 */
+    --accent-foreground: #ffffff; /* Texto sobre acento */
+    --border: #e2e8f0; /* Bordes suaves - slate-200 */
+    --ring: #94a3b8; /* Focus rings - slate-400 */
+    --radius: 0.5rem; /* Bordes suavemente redondeados */
+  }
+
+  .dark {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --card-foreground: #f1f5f9;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #334155;
+    --secondary-foreground: #e2e8f0;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #22c55e;
+    --accent-foreground: #ffffff;
+    --border: #334155;
+    --ring: #475569;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
