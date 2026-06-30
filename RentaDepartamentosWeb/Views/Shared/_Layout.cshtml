@@ -1,53 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - RentaDepartamentosWeb</title>
+    <title>@ViewData["Title"] - RealEstatePro</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RentaDepartamentosWeb.styles.css" asp-append-version="true" />
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4">
-            <div class="container-fluid px-4">
-                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-building-fill text-accent me-2"></i>Renta de Departamentos
+        <nav class="navbar navbar-expand-lg navbar-custom shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="brand-mark"><i class="bi bi-building-fill"></i></span>
+                    <span>RealEstate<span class="brand-accent">Pro</span></span>
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">
                                 <i class="bi bi-house-door me-1"></i>Inicio
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3" asp-controller="Departamento" asp-action="Disponibles">
+                            <a class="nav-link" asp-controller="Departamento" asp-action="Disponibles">
                                 <i class="bi bi-check-circle me-1"></i>Disponibles
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3" asp-controller="Departamento" asp-action="Create">
+                            <a class="nav-link" asp-controller="Departamento" asp-action="Create">
                                 <i class="bi bi-plus-circle me-1"></i>Registrar
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3" asp-controller="Departamento" asp-action="Index">
+                            <a class="nav-link" asp-controller="Departamento" asp-action="Index">
                                 <i class="bi bi-sliders me-1"></i>Administrar
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white px-3" asp-controller="Departamento" asp-action="Buscar">
+                            <a class="nav-link" asp-controller="Departamento" asp-action="Buscar">
                                 <i class="bi bi-search me-1"></i>Buscar
                             </a>
                         </li>
@@ -56,17 +57,26 @@
             </div>
         </nav>
     </header>
-    <div class="container mb-5">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted footer-custom py-4 mt-auto">
-        <div class="container text-center">
-            <span class="text-white-50">&copy; 2026 - Renta de Departamentos | Desarrollado por el <strong>Equipo de Desarrollo RentAHouse</strong></span>
+    <main role="main" class="flex-grow-1 py-4 py-lg-5">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="footer-custom mt-auto">
+        <div class="container py-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 text-center text-md-start">
+                <span>&copy; 2026 RealEstatePro. Gestión inteligente de departamentos.</span>
+                <div class="d-flex gap-3 text-white-50">
+                    <span>Soporte</span>
+                    <span>Privacidad</span>
+                    <span>Términos</span>
+                </div>
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

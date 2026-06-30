@@ -921,19 +921,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\manue\\.nuget\\packages\\": {}
+    "C:\\Users\\josse\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
+      "projectUniqueName": "C:\\Users\\josse\\Downloads\\RentaDepartamentosWeb\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
       "projectName": "RentaDepartamentosWeb",
-      "projectPath": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
-      "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\obj\\",
+      "projectPath": "C:\\Users\\josse\\Downloads\\RentaDepartamentosWeb\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
+      "packagesPath": "C:\\Users\\josse\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\josse\\Downloads\\RentaDepartamentosWeb\\RentAHouse\\RentaDepartamentosWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\josse\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"

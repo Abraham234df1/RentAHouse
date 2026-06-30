@@ -4,23 +4,29 @@
     ViewData["Title"] = "Editar Departamento";
 }
 
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-dark">
-                    <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Editar Departamento (ID: @Model.Id)</h4>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Edit" method="post">
-                        <!-- ID oculto requerido para el POST -->
-                        <input type="hidden" asp-for="Id" />
+<div class="page-shell">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="section-title">
+                <i class="bi bi-pencil-square"></i>
+                <span>Edición</span>
+            </div>
+            <h2 class="mb-1">Editar departamento</h2>
+            <p class="text-muted mb-0">Actualiza información y estado del inmueble seleccionado.</p>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+    </div>
 
-                        <!-- Resumen de errores de validación del servicio -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card">
+                <div class="card-body p-4 p-lg-5">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
                         <div class="mb-3">
-                            <label asp-for="Direccion" class="form-label font-weight-bold">Dirección</label>
+                            <label asp-for="Direccion" class="form-label">Dirección</label>
                             <input asp-for="Direccion" class="form-control" required />
                             <span asp-validation-for="Direccion" class="text-danger"></span>
                         </div>
@@ -53,7 +59,7 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label asp-for="PrecioRenta" class="form-label">Precio de Renta ($)</label>
+                                <label asp-for="PrecioRenta" class="form-label">Precio de renta ($)</label>
                                 <input asp-for="PrecioRenta" class="form-control" type="number" step="0.01" min="0.01" required />
                                 <span asp-validation-for="PrecioRenta" class="text-danger"></span>
                             </div>
@@ -68,24 +74,23 @@
                             </div>
                         </div>
 
-                        <!-- Sección condicional para departamentos rentados -->
                         <div class="card bg-light mb-3" id="seccionRenta" style="display: none;">
                             <div class="card-body">
-                                <h6 class="card-title text-primary">Información de Renta</h6>
+                                <h6 class="card-title text-primary">Información de renta</h6>
                                 <div class="mb-3">
-                                    <label asp-for="Arrendatario" class="form-label">Nombre del Arrendatario</label>
+                                    <label asp-for="Arrendatario" class="form-label">Nombre del arrendatario</label>
                                     <input asp-for="Arrendatario" class="form-control" id="inputArrendatario" placeholder="Ej. Juan Pérez" />
                                     <span asp-validation-for="Arrendatario" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label asp-for="FechaInicioRenta" class="form-label">Fecha de Inicio de Renta</label>
+                                    <label asp-for="FechaInicioRenta" class="form-label">Fecha de inicio de renta</label>
                                     <input asp-for="FechaInicioRenta" class="form-control" type="date" id="inputFechaInicio" value="@(Model.FechaInicioRenta?.ToString("yyyy-MM-dd"))" />
                                     <span asp-validation-for="FechaInicioRenta" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between mt-4">
                             <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
                             <button type="submit" class="btn btn-warning">Actualizar</button>
                         </div>
@@ -108,7 +113,6 @@
                 if (selectEstado.value === "Rentado") {
                     seccionRenta.style.display = "block";
                     inputArrendatario.required = true;
-                    // Sugerir fecha de hoy si está vacío
                     if (!inputFechaInicio.value) {
                         var hoy = new Date().toISOString().split('T')[0];
                         inputFechaInicio.value = hoy;
@@ -116,14 +120,13 @@
                 } else {
                     seccionRenta.style.display = "none";
                     inputArrendatario.required = false;
-                    // Al vaciar el estado "Rentado", limpiamos los valores para persistir NULL
                     inputArrendatario.value = "";
                     inputFechaInicio.value = "";
                 }
             }
 
             selectEstado.addEventListener("change", actualizarSeccionRenta);
-            actualizarSeccionRenta(); // Ejecutar al cargar la página
+            actualizarSeccionRenta();
         });
     </script>
 }

@@ -4,22 +4,29 @@
     ViewData["Title"] = "Departamentos Disponibles";
 }
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="text-success"><i class="bi bi-check-circle"></i> Departamentos Disponibles</h2>
+<div class="page-shell">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-            <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver al Listado Completo</a>
-            <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nuevo Departamento</a>
+            <div class="section-title">
+                <i class="bi bi-check-circle"></i>
+                <span>Disponibilidad inmediata</span>
+            </div>
+            <h2 class="mb-1">Departamentos disponibles</h2>
+            <p class="text-muted mb-0">Mostrando únicamente propiedades con estado Disponible para renta inmediata.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver al listado</a>
+            <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nuevo departamento</a>
         </div>
     </div>
 
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-light border" role="alert">
         Mostrando únicamente departamentos con estado <strong>Disponible</strong> para su renta inmediata.
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-hover align-middle border">
-            <thead class="table-dark">
+    <div class="table-card">
+        <table class="table table-hover align-middle">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Dirección</th>
@@ -27,7 +34,7 @@
                     <th>Ciudad</th>
                     <th class="text-center">Hab.</th>
                     <th class="text-center">Baños</th>
-                    <th class="text-end">Precio Renta</th>
+                    <th class="text-end">Precio renta</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
@@ -36,7 +43,7 @@
                 @if (!Model.Any())
                 {
                     <tr>
-                        <td colspan="9" class="text-center text-muted py-4">No hay departamentos disponibles en este momento.</td>
+                        <td colspan="9" class="empty-state">No hay departamentos disponibles en este momento.</td>
                     </tr>
                 }
                 else
@@ -56,14 +63,14 @@
                             </td>
                             <td class="text-center">
                                 <div class="btn-group" role="group">
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Ver Detalles">
-                                        <i class="bi bi-eye-fill"></i> Detalles
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Ver detalles">
+                                        <i class="bi bi-eye-fill"></i>
                                     </a>
                                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Editar">
-                                        <i class="bi bi-pencil-fill"></i> Editar
+                                        <i class="bi bi-pencil-fill"></i>
                                     </a>
                                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar">
-                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                        <i class="bi bi-trash-fill"></i>
                                     </a>
                                 </div>
                             </td>

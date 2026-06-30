@@ -2,81 +2,105 @@
     ViewData["Title"] = "Inicio";
 }
 
-<div class="container py-5">
-    <!-- Hero Section -->
-    <div class="hero-section text-center position-relative overflow-hidden">
-        <div class="position-relative z-index-1">
-            <h1 class="display-4 fw-bold mb-3">Bienvenido a RentAHouse</h1>
-            <p class="lead mb-4">La plataforma ideal para gestionar de manera rápida, ágil y segura la renta de tus departamentos.</p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a asp-controller="Departamento" asp-action="Index" class="btn btn-light btn-lg px-4 shadow-sm fw-semibold">Comenzar</a>
-                <a asp-controller="Departamento" asp-action="Buscar" class="btn btn-outline-light btn-lg px-4 fw-semibold">Búsqueda Avanzada</a>
+<div class="page-shell">
+    <section class="hero-section">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <div class="hero-pill">
+                    <i class="bi bi-house-door"></i>
+                    Gestión inmobiliaria moderna
+                </div>
+                <h1 class="display-5 fw-bold mb-3">Administra tus departamentos con una experiencia nueva, clara y profesional.</h1>
+                <p class="lead mb-4">Centraliza estados, rentas y disponibilidad desde un panel pensado para operar de forma ágil y ordenada.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a asp-controller="Departamento" asp-action="Index" class="btn btn-light btn-lg px-4 fw-semibold">Comenzar</a>
+                    <a asp-controller="Departamento" asp-action="Buscar" class="btn btn-outline-light btn-lg px-4 fw-semibold">Búsqueda avanzada</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="glass-card p-4">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="summary-card">
+                                <div class="title">Disponibles</div>
+                                <div class="value">+20%</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="summary-card">
+                                <div class="title">Rentados</div>
+                                <div class="value">12</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="summary-card">
+                                <div class="title">Seguimiento</div>
+                                <div class="value">Tiempo real</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Grid de Enlaces y Funcionalidades -->
-    <div class="row g-4">
-        <!-- Departamentos Disponibles -->
+    <div class="row g-4 mt-1">
         <div class="col-md-6 col-lg-3">
-            <div class="card feature-card shadow-sm text-center p-4">
+            <div class="card feature-card text-center p-4">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <div class="icon-wrapper text-success">
+                        <div class="icon-wrapper">
                             <i class="bi bi-check-circle-fill"></i>
                         </div>
                         <h4 class="card-title fw-bold mb-3">Disponibles</h4>
-                        <p class="card-text text-muted mb-4">Consulta al instante los departamentos listos para ser arrendados.</p>
+                        <p class="card-text text-muted mb-4">Consulta al instante los departamentos listos para arrendar.</p>
                     </div>
-                    <a asp-controller="Departamento" asp-action="Disponibles" class="btn btn-outline-success w-100 fw-semibold mt-auto">Ver Disponibles</a>
+                    <a asp-controller="Departamento" asp-action="Disponibles" class="btn btn-outline-success w-100 fw-semibold mt-auto">Ver disponibles</a>
                 </div>
             </div>
         </div>
 
-        <!-- Registrar Departamento -->
         <div class="col-md-6 col-lg-3">
-            <div class="card feature-card shadow-sm text-center p-4">
+            <div class="card feature-card text-center p-4">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <div class="icon-wrapper text-primary">
+                        <div class="icon-wrapper">
                             <i class="bi bi-plus-circle-fill"></i>
                         </div>
                         <h4 class="card-title fw-bold mb-3">Registrar</h4>
-                        <p class="card-text text-muted mb-4">Agrega nuevos departamentos al catálogo con toda su información clave.</p>
+                        <p class="card-text text-muted mb-4">Agrega nuevos departamentos con información y estado completos.</p>
                     </div>
-                    <a asp-controller="Departamento" asp-action="Create" class="btn btn-outline-primary w-100 fw-semibold mt-auto">Nuevo Departamento</a>
+                    <a asp-controller="Departamento" asp-action="Create" class="btn btn-outline-primary w-100 fw-semibold mt-auto">Nuevo departamento</a>
                 </div>
             </div>
         </div>
 
-        <!-- Administrar Departamentos -->
         <div class="col-md-6 col-lg-3">
-            <div class="card feature-card shadow-sm text-center p-4">
+            <div class="card feature-card text-center p-4">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <div class="icon-wrapper text-warning">
+                        <div class="icon-wrapper">
                             <i class="bi bi-sliders"></i>
                         </div>
                         <h4 class="card-title fw-bold mb-3">Administrar</h4>
-                        <p class="card-text text-muted mb-4">Modifica datos, cambia estados, consulta arrendatarios o elimina registros.</p>
+                        <p class="card-text text-muted mb-4">Modifica registros, revisa arrendatarios y cambia estados con facilidad.</p>
                     </div>
-                    <a asp-controller="Departamento" asp-action="Index" class="btn btn-outline-warning w-100 fw-semibold mt-auto">Gestionar Todo</a>
+                    <a asp-controller="Departamento" asp-action="Index" class="btn btn-outline-warning w-100 fw-semibold mt-auto">Gestionar todo</a>
                 </div>
             </div>
         </div>
 
-        <!-- Buscar Departamentos -->
         <div class="col-md-6 col-lg-3">
-            <div class="card feature-card shadow-sm text-center p-4">
+            <div class="card feature-card text-center p-4">
                 <div class="card-body d-flex flex-column justify-content-between">
                     <div>
-                        <div class="icon-wrapper text-info">
+                        <div class="icon-wrapper">
                             <i class="bi bi-search"></i>
                         </div>
                         <h4 class="card-title fw-bold mb-3">Buscar</h4>
-                        <p class="card-text text-muted mb-4">Busca de manera detallada usando filtros de ciudad, colonia, precio y estado.</p>
+                        <p class="card-text text-muted mb-4">Filtra por ciudad, colonia, precio y estado para encontrar lo que necesitas.</p>
                     </div>
-                    <a asp-controller="Departamento" asp-action="Buscar" class="btn btn-outline-info w-100 fw-semibold mt-auto">Ir a Buscar</a>
+                    <a asp-controller="Departamento" asp-action="Buscar" class="btn btn-outline-primary w-100 fw-semibold mt-auto">Ir a buscar</a>
                 </div>
             </div>
         </div>
