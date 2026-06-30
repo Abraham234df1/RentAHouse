@@ -1,0 +1,125 @@
+@model RentaDepartamentosWeb.Models.Departamento
+
+@{
+    ViewData["Title"] = "Registrar Departamento";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Registrar Departamento</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <!-- Resumen de errores de validación del servicio -->
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Direccion" class="form-label font-weight-bold">Dirección</label>
+                            <input asp-for="Direccion" class="form-control" placeholder="Ej. Av. Reforma 123" required />
+                            <span asp-validation-for="Direccion" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Colonia" class="form-label">Colonia</label>
+                                <input asp-for="Colonia" class="form-control" placeholder="Ej. Centro" required />
+                                <span asp-validation-for="Colonia" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Ciudad" class="form-label">Ciudad</label>
+                                <input asp-for="Ciudad" class="form-control" placeholder="Ej. Mérida" required />
+                                <span asp-validation-for="Ciudad" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Habitaciones" class="form-label">Habitaciones</label>
+                                <input asp-for="Habitaciones" class="form-control" type="number" min="1" required />
+                                <span asp-validation-for="Habitaciones" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Banios" class="form-label">Baños</label>
+                                <input asp-for="Banios" class="form-control" type="number" step="0.5" min="0.5" required />
+                                <span asp-validation-for="Banios" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PrecioRenta" class="form-label">Precio de Renta ($)</label>
+                                <input asp-for="PrecioRenta" class="form-control" type="number" step="0.01" min="0.01" required />
+                                <span asp-validation-for="PrecioRenta" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Estado" class="form-label">Estado</label>
+                                <select asp-for="Estado" class="form-select" id="selectEstado" required>
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="Rentado">Rentado</option>
+                                    <option value="Mantenimiento">Mantenimiento</option>
+                                </select>
+                                <span asp-validation-for="Estado" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Sección condicional para departamentos rentados -->
+                        <div class="card bg-light mb-3" id="seccionRenta" style="display: none;">
+                            <div class="card-body">
+                                <h6 class="card-title text-primary">Información de Renta</h6>
+                                <div class="mb-3">
+                                    <label asp-for="Arrendatario" class="form-label">Nombre del Arrendatario</label>
+                                    <input asp-for="Arrendatario" class="form-control" id="inputArrendatario" placeholder="Ej. Juan Pérez" />
+                                    <span asp-validation-for="Arrendatario" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FechaInicioRenta" class="form-label">Fecha de Inicio de Renta</label>
+                                    <input asp-for="FechaInicioRenta" class="form-control" type="date" id="inputFechaInicio" />
+                                    <span asp-validation-for="FechaInicioRenta" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var selectEstado = document.getElementById("selectEstado");
+            var seccionRenta = document.getElementById("seccionRenta");
+            var inputArrendatario = document.getElementById("inputArrendatario");
+            var inputFechaInicio = document.getElementById("inputFechaInicio");
+
+            function actualizarSeccionRenta() {
+                if (selectEstado.value === "Rentado") {
+                    seccionRenta.style.display = "block";
+                    inputArrendatario.required = true;
+                    // Sugerir fecha de hoy si está vacío
+                    if (!inputFechaInicio.value) {
+                        var hoy = new Date().toISOString().split('T')[0];
+                        inputFechaInicio.value = hoy;
+                    }
+                } else {
+                    seccionRenta.style.display = "none";
+                    inputArrendatario.required = false;
+                    inputArrendatario.value = "";
+                    inputFechaInicio.value = "";
+                }
+            }
+
+            selectEstado.addEventListener("change", actualizarSeccionRenta);
+            actualizarSeccionRenta(); // Ejecutar al cargar la página
+        });
+    </script>
+}

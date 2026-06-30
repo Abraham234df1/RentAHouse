@@ -1,0 +1,107 @@
+@model IEnumerable<RentaDepartamentosWeb.Models.Departamento>
+
+@{
+    ViewData["Title"] = "Listado de Departamentos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary"><i class="bi bi-building"></i> Listado de Departamentos</h2>
+        <div>
+            <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Nuevo Departamento</a>
+            <a asp-action="Disponibles" class="btn btn-outline-primary"><i class="bi bi-check-circle"></i> Ver Disponibles</a>
+        </div>
+    </div>
+
+    <!-- Barra de búsqueda rápida -->
+    <div class="card mb-4 bg-light">
+        <div class="card-body">
+            <form asp-action="Buscar" method="get" class="row g-3">
+                <div class="col-md-5">
+                    <input type="text" name="termino" class="form-control" placeholder="Buscar por ciudad o colonia..." />
+                </div>
+                <div class="col-md-3">
+                    <input type="number" name="precioMin" class="form-control" placeholder="Precio Min" step="0.01" />
+                </div>
+                <div class="col-md-3">
+                    <input type="number" name="precioMax" class="form-control" placeholder="Precio Max" step="0.01" />
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-search"></i> Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle border">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Dirección</th>
+                    <th>Colonia</th>
+                    <th>Ciudad</th>
+                    <th class="text-center">Hab.</th>
+                    <th class="text-center">Baños</th>
+                    <th class="text-end">Precio Renta</th>
+                    <th class="text-center">Estado</th>
+                    <th>Arrendatario</th>
+                    <th class="text-center">Inicio Renta</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="11" class="text-center text-muted py-4">No se encontraron departamentos registrados.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Direccion</td>
+                            <td>@item.Colonia</td>
+                            <td>@item.Ciudad</td>
+                            <td class="text-center">@item.Habitaciones</td>
+                            <td class="text-center">@item.Banios</td>
+                            <td class="text-end">@item.PrecioRenta.ToString("C2")</td>
+                            <td class="text-center">
+                                @if (item.Estado == "Disponible")
+                                {
+                                    <span class="badge bg-success">Disponible</span>
+                                }
+                                else if (item.Estado == "Rentado")
+                                {
+                                    <span class="badge bg-danger">Rentado</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Mantenimiento</span>
+                                }
+                            </td>
+                            <td>@(string.IsNullOrWhiteSpace(item.Arrendatario) ? "-" : item.Arrendatario)</td>
+                            <td class="text-center">@(item.FechaInicioRenta?.ToString("dd/MM/yyyy") ?? "-")</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Ver Detalles">
+                                        <i class="bi bi-eye-fill"></i> Detalles
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Editar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

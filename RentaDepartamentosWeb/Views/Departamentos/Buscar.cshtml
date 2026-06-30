@@ -1,0 +1,123 @@
+@model IEnumerable<RentaDepartamentosWeb.Models.Departamento>
+
+@{
+    ViewData["Title"] = "Buscar Departamentos";
+    var termino = ViewBag.Termino as string;
+    var precioMin = ViewBag.PrecioMin as decimal?;
+    var precioMax = ViewBag.PrecioMax as decimal?;
+    var estado = ViewBag.Estado as string;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary"><i class="bi bi-search"></i> Búsqueda de Departamentos</h2>
+        <a asp-action="Index" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Volver al Listado</a>
+    </div>
+
+    <!-- Panel de filtros avanzados -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+            <h6 class="mb-0">Filtros de Búsqueda</h6>
+        </div>
+        <div class="card-body">
+            <form asp-action="Buscar" method="get" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label font-weight-bold">Ciudad o Colonia</label>
+                    <input type="text" name="termino" class="form-control" value="@termino" placeholder="Ej. Mérida, Centro..." />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Precio Mínimo ($)</label>
+                    <input type="number" name="precioMin" class="form-control" value="@precioMin" placeholder="Sin mínimo" step="0.01" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label font-weight-bold">Precio Máximo ($)</label>
+                    <input type="number" name="precioMax" class="form-control" value="@precioMax" placeholder="Sin máximo" step="0.01" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label font-weight-bold">Estado</label>
+                    <select name="estado" class="form-select">
+                        <option value="">-- Todos --</option>
+                        <option value="Disponible" selected="@(estado == "Disponible" ? "selected" : null)">Disponible</option>
+                        <option value="Rentado" selected="@(estado == "Rentado" ? "selected" : null)">Rentado</option>
+                        <option value="Mantenimiento" selected="@(estado == "Mantenimiento" ? "selected" : null)">Mantenimiento</option>
+                    </select>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-filter"></i> Filtrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle border">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Dirección</th>
+                    <th>Colonia</th>
+                    <th>Ciudad</th>
+                    <th class="text-center">Hab.</th>
+                    <th class="text-center">Baños</th>
+                    <th class="text-end">Precio Renta</th>
+                    <th class="text-center">Estado</th>
+                    <th>Arrendatario</th>
+                    <th class="text-center">Inicio Renta</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="11" class="text-center text-muted py-4">No se encontraron departamentos que coincidan con los filtros aplicados.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Direccion</td>
+                            <td>@item.Colonia</td>
+                            <td>@item.Ciudad</td>
+                            <td class="text-center">@item.Habitaciones</td>
+                            <td class="text-center">@item.Banios</td>
+                            <td class="text-end">@item.PrecioRenta.ToString("C2")</td>
+                            <td class="text-center">
+                                @if (item.Estado == "Disponible")
+                                {
+                                    <span class="badge bg-success">Disponible</span>
+                                }
+                                else if (item.Estado == "Rentado")
+                                {
+                                    <span class="badge bg-danger">Rentado</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Mantenimiento</span>
+                                }
+                            </td>
+                            <td>@(string.IsNullOrWhiteSpace(item.Arrendatario) ? "-" : item.Arrendatario)</td>
+                            <td class="text-center">@(item.FechaInicioRenta?.ToString("dd/MM/yyyy") ?? "-")</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary" title="Ver Detalles">
+                                        <i class="bi bi-eye-fill"></i> Detalles
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning" title="Editar">
+                                        <i class="bi bi-pencil-fill"></i> Editar
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" title="Eliminar">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

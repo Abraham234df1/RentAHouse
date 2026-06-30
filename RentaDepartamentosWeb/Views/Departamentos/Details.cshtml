@@ -1,0 +1,55 @@
+@model RentaDepartamentosWeb.Models.Departamento
+
+@{
+    ViewData["Title"] = "Detalles del Departamento";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0"><i class="bi bi-info-circle"></i> Detalles del Departamento (ID: @Model.Id)</h4>
+                    <span class="badge @(Model.Estado == "Disponible" ? "bg-success" : Model.Estado == "Rentado" ? "bg-danger" : "bg-warning text-dark")">@Model.Estado</span>
+                </div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 text-muted">Dirección</dt>
+                        <dd class="col-sm-8 font-weight-bold">@Model.Direccion</dd>
+
+                        <dt class="col-sm-4 text-muted">Colonia</dt>
+                        <dd class="col-sm-8">@Model.Colonia</dd>
+
+                        <dt class="col-sm-4 text-muted">Ciudad</dt>
+                        <dd class="col-sm-8">@Model.Ciudad</dd>
+
+                        <hr class="my-3">
+
+                        <dt class="col-sm-4 text-muted">Habitaciones</dt>
+                        <dd class="col-sm-8">@Model.Habitaciones</dd>
+
+                        <dt class="col-sm-4 text-muted">Baños</dt>
+                        <dd class="col-sm-8">@Model.Banios</dd>
+
+                        <dt class="col-sm-4 text-muted">Precio de Renta</dt>
+                        <dd class="col-sm-8 text-success font-weight-bold">@Model.PrecioRenta.ToString("C2")</dd>
+
+                        <hr class="my-3">
+
+                        <dt class="col-sm-4 text-muted">Arrendatario</dt>
+                        <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Arrendatario) ? "-" : Model.Arrendatario)</dd>
+
+                        <dt class="col-sm-4 text-muted">Fecha de Inicio de Renta</dt>
+                        <dd class="col-sm-8">@(Model.FechaInicioRenta?.ToString("dd/MM/yyyy") ?? "-")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer bg-light d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
