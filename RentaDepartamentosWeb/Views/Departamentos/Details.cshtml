@@ -4,12 +4,15 @@
     ViewData["Title"] = "Detalles del Departamento";
 }
 
-<div class="container mt-4">
+<div class="container mt-4 fade-in-up">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-7">
-            <div class="card shadow">
+            <div class="card shadow shadow-hover rounded-4 glass-card">
                 <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0"><i class="bi bi-info-circle"></i> Detalles del Departamento (ID: @Model.Id)</h4>
+                    <div>
+                        <h4 class="mb-0"><i class="bi bi-info-circle"></i> Detalles del Departamento (ID: @Model.Id)</h4>
+                        <p class="mb-0 small text-white-75">Resumen completo del inmueble y su estado actual.</p>
+                    </div>
                     <span class="badge @(Model.Estado == "Disponible" ? "bg-success" : Model.Estado == "Rentado" ? "bg-danger" : "bg-warning text-dark")">@Model.Estado</span>
                 </div>
                 <div class="card-body">

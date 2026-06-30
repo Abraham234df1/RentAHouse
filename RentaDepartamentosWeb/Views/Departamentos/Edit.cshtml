@@ -4,12 +4,13 @@
     ViewData["Title"] = "Editar Departamento";
 }
 
-<div class="container mt-4">
+<div class="container mt-4 fade-in-up">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="card shadow">
+            <div class="card shadow shadow-hover rounded-4">
                 <div class="card-header bg-warning text-dark">
                     <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Editar Departamento (ID: @Model.Id)</h4>
+                    <p class="mb-0 small text-dark-75 mt-2">Actualiza los detalles del departamento y gestiona su estado de renta.</p>
                 </div>
                 <div class="card-body">
                     <form asp-action="Edit" method="post">
