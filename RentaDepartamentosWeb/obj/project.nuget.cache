@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qz0FRbxEjNk=",
+  "dgSpecHash": "I1JH2UKD1XY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
+  "projectFilePath": "c:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\manue\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\manue\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

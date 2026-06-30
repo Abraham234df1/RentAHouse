@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Registrar ConexionBD para las conexiones a la base de datos
-builder.Services.AddSingleton<ConexionBD>();
+builder.Services.AddScoped<ConexionBD>();
 
 // Registrar repositorios
 builder.Services.AddScoped<IDepartamentoRepository, DepartamentoRepository>();

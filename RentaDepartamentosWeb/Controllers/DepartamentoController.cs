@@ -169,39 +169,19 @@ namespace RentaDepartamentosWeb.Controllers
         /// Busca departamentos por ciudad, colonia, estado o un rango de precios opcional.
         /// </summary>
         /// <param name="termino">Término de búsqueda para ciudad o colonia.</param>
+        /// <param name="ciudad">Ciudad del departamento.</param>
+        /// <param name="colonia">Colonia del departamento.</param>
         /// <param name="precioMin">Precio de renta mínimo.</param>
         /// <param name="precioMax">Precio de renta máximo.</param>
         /// <param name="estado">Estado del departamento (Disponible, Rentado, Mantenimiento).</param>
-        public IActionResult Buscar(string? termino, decimal? precioMin, decimal? precioMax, string? estado)
+        public IActionResult Buscar(string? termino, string? ciudad, string? colonia, decimal? precioMin, decimal? precioMax, string? estado)
         {
-            IEnumerable<Departamento> resultados;
-
-            if (!string.IsNullOrWhiteSpace(termino))
-            {
-                resultados = _servicio.BuscarPorCiudadOColonia(termino);
-            }
-            else
-            {
-                resultados = _servicio.ObtenerDepartamentos();
-            }
-
-            if (!string.IsNullOrWhiteSpace(estado))
-            {
-                resultados = resultados.Where(d => d.Estado.Equals(estado, StringComparison.OrdinalIgnoreCase));
-            }
-
-            if (precioMin.HasValue)
-            {
-                resultados = resultados.Where(d => d.PrecioRenta >= precioMin.Value);
-            }
-
-            if (precioMax.HasValue)
-            {
-                resultados = resultados.Where(d => d.PrecioRenta <= precioMax.Value);
-            }
+            var resultados = _servicio.BuscarDepartamentos(termino, ciudad, colonia, precioMin, precioMax, estado);
 
             // Guardar filtros en ViewBag para conservarlos en el formulario
             ViewBag.Termino = termino;
+            ViewBag.Ciudad = ciudad;
+            ViewBag.Colonia = colonia;
             ViewBag.PrecioMin = precioMin;
             ViewBag.PrecioMax = precioMax;
             ViewBag.Estado = estado;

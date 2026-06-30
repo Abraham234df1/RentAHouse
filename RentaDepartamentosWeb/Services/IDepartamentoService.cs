@@ -36,6 +36,18 @@ namespace RentaDepartamentosWeb.Services
         IEnumerable<Departamento> BuscarPorCiudadOColonia(string terminoBusqueda);
 
         /// <summary>
+        /// Realiza una búsqueda avanzada de departamentos aplicando diversos filtros opcionales.
+        /// </summary>
+        /// <param name="termino">Término de búsqueda rápida (ciudad o colonia).</param>
+        /// <param name="ciudad">Ciudad específica a buscar.</param>
+        /// <param name="colonia">Colonia específica a buscar.</param>
+        /// <param name="precioMin">Precio de renta mínimo.</param>
+        /// <param name="precioMax">Precio de renta máximo.</param>
+        /// <param name="estado">Estado del departamento.</param>
+        /// <returns>Colección de departamentos filtrados.</returns>
+        IEnumerable<Departamento> BuscarDepartamentos(string? termino, string? ciudad, string? colonia, decimal? precioMin, decimal? precioMax, string? estado);
+
+        /// <summary>
         /// Actualiza un departamento aplicando validaciones de negocio.
         /// </summary>
         /// <param name="departamento">El departamento con los datos actualizados.</param>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj": {}
+    "c:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj": {
+    "c:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
+        "projectUniqueName": "c:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
         "projectName": "RentaDepartamentosWeb",
-        "projectPath": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
+        "projectPath": "c:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\RentaDepartamentosWeb.csproj",
         "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\obj\\",
+        "outputPath": "c:\\Users\\manue\\OneDrive - Universidad Tecnológica Metropolitana\\Documentos\\Escritorio\\RentAHouse\\RentaDepartamentosWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config"

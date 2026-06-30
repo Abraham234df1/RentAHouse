@@ -2,7 +2,8 @@
 
 @{
     ViewData["Title"] = "Buscar Departamentos";
-    var termino = ViewBag.Termino as string;
+    var ciudad = ViewBag.Ciudad as string;
+    var colonia = ViewBag.Colonia as string;
     var precioMin = ViewBag.PrecioMin as decimal?;
     var precioMax = ViewBag.PrecioMax as decimal?;
     var estado = ViewBag.Estado as string;
@@ -22,8 +23,12 @@
         <div class="card-body">
             <form asp-action="Buscar" method="get" class="row g-3">
                 <div class="col-md-3">
-                    <label class="form-label font-weight-bold">Ciudad o Colonia</label>
-                    <input type="text" name="termino" class="form-control" value="@termino" placeholder="Ej. Mérida, Centro..." />
+                    <label class="form-label font-weight-bold">Ciudad</label>
+                    <input type="text" name="ciudad" class="form-control" value="@ciudad" placeholder="Ej. Mérida..." />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label font-weight-bold">Colonia</label>
+                    <input type="text" name="colonia" class="form-control" value="@colonia" placeholder="Ej. Centro..." />
                 </div>
                 <div class="col-md-2">
                     <label class="form-label font-weight-bold">Precio Mínimo ($)</label>
@@ -33,7 +38,7 @@
                     <label class="form-label font-weight-bold">Precio Máximo ($)</label>
                     <input type="number" name="precioMax" class="form-control" value="@precioMax" placeholder="Sin máximo" step="0.01" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="form-label font-weight-bold">Estado</label>
                     <select name="estado" class="form-select">
                         <option value="">-- Todos --</option>
@@ -42,8 +47,9 @@
                         <option value="Mantenimiento" selected="@(estado == "Mantenimiento" ? "selected" : null)">Mantenimiento</option>
                     </select>
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-filter"></i> Filtrar</button>
+                <div class="col-12 text-end mt-3">
+                    <button type="submit" class="btn btn-primary px-4"><i class="bi bi-filter"></i> Filtrar</button>
+                    <a asp-action="Buscar" class="btn btn-outline-secondary px-4"><i class="bi bi-arrow-counterclockwise"></i> Limpiar</a>
                 </div>
             </form>
         </div>

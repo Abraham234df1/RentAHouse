@@ -133,3 +133,4 @@ C:\Users\manue\OneDrive - Universidad Tecnológica Metropolitana\Documentos\Escr
 C:\Users\manue\OneDrive - Universidad Tecnológica Metropolitana\Documentos\Escritorio\RentAHouse\RentaDepartamentosWeb\obj\Debug\net10.0\RentaDepartamentosWeb.genruntimeconfig.cache
 C:\Users\manue\OneDrive - Universidad Tecnológica Metropolitana\Documentos\Escritorio\RentAHouse\RentaDepartamentosWeb\obj\Debug\net10.0\ref\RentaDepartamentosWeb.dll
 C:\Users\manue\OneDrive - Universidad Tecnológica Metropolitana\Documentos\Escritorio\RentAHouse\RentaDepartamentosWeb\obj\Debug\net10.0\compressed\jjrhc3k2h8-{0}-tjmpoivlme-tjmpoivlme.gz
+C:\Users\manue\OneDrive - Universidad Tecnológica Metropolitana\Documentos\Escritorio\RentAHouse\RentaDepartamentosWeb\obj\Debug\net10.0\RentaDepartamentosWeb.sourcelink.json

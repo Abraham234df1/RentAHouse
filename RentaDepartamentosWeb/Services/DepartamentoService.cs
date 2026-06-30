@@ -2,6 +2,7 @@ using RentaDepartamentosWeb.Models;
 using RentaDepartamentosWeb.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RentaDepartamentosWeb.Services
 {
@@ -45,6 +46,48 @@ namespace RentaDepartamentosWeb.Services
         public IEnumerable<Departamento> BuscarPorCiudadOColonia(string terminoBusqueda)
         {
             return _repositorio.BuscarPorCiudadOColonia(terminoBusqueda);
+        }
+
+        /// <inheritdoc />
+        public IEnumerable<Departamento> BuscarDepartamentos(string? termino, string? ciudad, string? colonia, decimal? precioMin, decimal? precioMax, string? estado)
+        {
+            IEnumerable<Departamento> resultados;
+
+            if (!string.IsNullOrWhiteSpace(termino))
+            {
+                resultados = _repositorio.BuscarPorCiudadOColonia(termino);
+            }
+            else
+            {
+                resultados = _repositorio.ObtenerDepartamentos();
+            }
+
+            if (!string.IsNullOrWhiteSpace(ciudad))
+            {
+                resultados = resultados.Where(d => d.Ciudad.Contains(ciudad, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(colonia))
+            {
+                resultados = resultados.Where(d => d.Colonia.Contains(colonia, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(estado))
+            {
+                resultados = resultados.Where(d => d.Estado.Equals(estado, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (precioMin.HasValue)
+            {
+                resultados = resultados.Where(d => d.PrecioRenta >= precioMin.Value);
+            }
+
+            if (precioMax.HasValue)
+            {
+                resultados = resultados.Where(d => d.PrecioRenta <= precioMax.Value);
+            }
+
+            return resultados;
         }
 
         /// <inheritdoc />
